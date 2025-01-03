@@ -1,0 +1,38 @@
+//============================================================================
+// Name        : CSC450_CT3.cpp
+// Author      : Josephine Huynh
+// Description : Create a C++ program asking user to enter 3 values, then use  integer pointers store values in dynamic memory. Display the contents of the variables and pointers.
+//============================================================================
+
+#include <iostream>
+using namespace std;
+
+// Function to print integers
+void value(int x) {
+	cout<<"Value:" <<x<< endl;
+}
+
+// Main function
+int main() {
+	// Create a pointer to a function
+	void (*foo)(int);
+    foo = &value;
+    int * values = new int[3];
+    // Prompt user to enter three integer values
+        cout<<"Please enter 3 integer values:\n";
+        for (int i=0; i<3; i++) {
+            cout<<"Value"<< i+1<< ": ";
+            cin>>values[i];
+        }
+        // Print out integer values using pointer function
+        cout << "Values after using the function pointer:\n";
+        for (int i=0; i<3; i++) {
+            (*foo)(values[i]);
+        // Print out address of the values
+        cout<<"Address: "<<&values[i] << endl;
+        }
+        // Delete memory that was allocated dynamically
+        delete[] values;
+
+        return 0;
+    }
